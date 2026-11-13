@@ -1,0 +1,14 @@
+# Persistent storage for the database. Rancher Desktop's K3s ships with the
+# local-path provisioner, so no storage class needs to be specified.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-data
+  labels:
+    app: postgres
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

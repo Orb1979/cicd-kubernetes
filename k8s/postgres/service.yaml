@@ -1,0 +1,15 @@
+# Cluster-internal database endpoint: the application reaches it at
+# 'postgres:5432' (see SPRING_DATASOURCE_URL in k8s/app/deployment.yaml).
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+  - name: postgres
+    port: 5432
+    targetPort: 5432

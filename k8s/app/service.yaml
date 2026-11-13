@@ -1,0 +1,16 @@
+# Rancher Desktop maps LoadBalancer services to localhost, so the API is
+# reachable at http://localhost:8080 once deployed.
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest-api-books
+  labels:
+    app: rest-api-books
+spec:
+  type: LoadBalancer
+  selector:
+    app: rest-api-books
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
