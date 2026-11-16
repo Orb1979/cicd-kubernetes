@@ -20,7 +20,7 @@ spec:
       containers:
         - name: rest-api-books
           # Tag is pinned to an immutable sha-<commit> reference by the deploy job.
-          image: ghcr.io/orb1979/rest-api-books:sha-77930bf
+          image: ghcr.io/orb1979/rest-api-books:sha-d5302de
           ports:
             - containerPort: 8080
           env:
