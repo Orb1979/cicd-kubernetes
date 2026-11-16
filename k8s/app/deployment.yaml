@@ -18,36 +18,36 @@ spec:
         app: rest-api-books
     spec:
       containers:
-      - name: rest-api-books
-        # Tag is pinned to an immutable sha-<commit> reference by the deploy job.
-        image: ghcr.io/orb1979/rest-api-books:latest
-        ports:
-        - containerPort: 8080
-        env:
-        # The in-cluster database, provided by k8s/postgres. These override the
-        # localhost defaults baked into the image's application.properties.
-        - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://postgres:5432/books
-        - name: SPRING_DATASOURCE_USERNAME
-          value: postgres
-        - name: SPRING_DATASOURCE_PASSWORD
-          value: password
-        # On Kubernetes, Spring Boot exposes these probe endpoints automatically.
-        readinessProbe:
-          httpGet:
-            path: /actuator/health/readiness
-            port: 8080
-          initialDelaySeconds: 15
-          periodSeconds: 5
-        livenessProbe:
-          httpGet:
-            path: /actuator/health/liveness
-            port: 8080
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        resources:
-          requests:
-            cpu: 100m
-            memory: 512Mi
-          limits:
-            memory: 1Gi
+        - name: rest-api-books
+          # Tag is pinned to an immutable sha-<commit> reference by the deploy job.
+          image: ghcr.io/orb1979/rest-api-books:sha-a50abd9
+          ports:
+            - containerPort: 8080
+          env:
+            # The in-cluster database, provided by k8s/postgres. These override the
+            # localhost defaults baked into the image's application.properties.
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres:5432/books
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: password
+          # On Kubernetes, Spring Boot exposes these probe endpoints automatically.
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              memory: 1Gi
