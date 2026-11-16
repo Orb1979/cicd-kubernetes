@@ -1,6 +1,6 @@
-# github-actions-01-kubernetes
+# cicd-kubernetes
 
-GitOps repository for the [rest-api-books](https://github.com/Orb1979/github-actions-test)
+GitOps repository for the [rest-api-books](https://github.com/Orb1979/cicd-app-with-gha)
 application: this repository holds the desired state of the local Kubernetes
 cluster. **Nothing here is deployed by hand** — Argo CD watches `k8s/` and
 syncs every change into the cluster.
